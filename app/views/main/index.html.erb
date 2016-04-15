@@ -1,0 +1,147 @@
+<!-- content -->
+<ul class="list-group">
+  <!-- buildpack -->
+  <li class="list-group-item pln">
+    <div class="row man">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 phxl">
+        <span class="h1 pan man icon-ruby type-neutral-5" style="top: 4px; left: -1px; position: relative;"></span>
+      </div>
+      <div class="col-xs-12 col-sm-15 col-md-15 col-lg-15">
+        <div class="type-neutral-4 small">
+          <div>BUILDPACK</div>
+        </div>
+        <div class="type-ellipsis">
+          Ruby/Rails
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-6 col-md-6 col-lg-6 ptl txt-r type-ellipsis">
+        <a href='http://docs.cloudfoundry.org/buildpacks/' target='_blank' class='type-accent-4'>
+          <span class="small">Buildpacks</span><span class="fa fa-icon fa-external-link plm txt-m small"></span>
+        </a>
+      </div>
+    </div>
+  </li>
+  <!-- app -->
+  <li class="list-group-item pln">
+    <div class="row man">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 phxl">
+        <span class="h1 pan man fa fa-icon fa-play-circle type-neutral-5" style="left: 0px; position: relative;"></span>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">APP NAME</div>
+        </div>
+        <div class="type-ellipsis"><%= @application_name ? @application_name : "@application_name"  %></div>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-10 col-lg-10">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">APP URIS</div>
+        </div>
+        <div class="type-ellipsis"><%= @application_uris ? @application_uris : "@app_uris" %></div>
+      </div>
+      <div class="col-xs-11 col-sm-11 col-md-6 col-lg-6 ptl txt-r type-ellipsis">
+        <a href='https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html' target='_blank' class='type-accent-4'>
+          <span class="small">Routes &amp; Domains</span><span class="fa fa-icon fa-external-link plm txt-m small"></span>
+        </a>
+      </div>
+    </div>
+  </li>
+  <!-- limits -->
+  <li class="list-group-item pln">
+    <div class="row man">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 phxl">
+        <span class="h1 pan man fa fa-icon fa-dashboard type-neutral-5" style="left: -2px; position: relative;"></span>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">INSTANCE INDEX</div>
+        </div>
+        <div class="type-ellipsis"><%= @app_instance_index ? @app_instance_index : "@app_instance_index" %></div>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">MEMORY LIMIT</div>
+        </div>
+        <div class="type-ellipsis"><%= !@application_mem_limits ? "@application_mem_limits" : "#{@application_mem_limits}M" %></div>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">DISK LIMIT</div>
+        </div>
+        <div class="type-ellipsis"><%= !@application_disk_limits ? "@application_disk_limits" : "#{@application_disk_limits}M" %></div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ptl txt-r type-ellipsis">
+        <a href='https://docs.cloudfoundry.org/devguide/deploy-apps/cf-scale.html' target='_blank' class='type-accent-4'>
+          <span class="small">Scaling</span><span class="fa fa-icon fa-external-link plm txt-m small"></span>
+        </a>
+      </div>
+    </div>
+  </li>
+  <!-- space -->
+  <li class="list-group-item pln">
+    <div class="row man">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 phxl">
+        <span class="h1 pan man fa fa-icon fa-bullseye type-neutral-5" style="left: 0px; position: relative;"></span>
+      </div>
+      <div class="col-xs-12 col-sm-15 col-md-15 col-lg-15">
+        <div class="type-neutral-4 small">
+          <span class="type-ellipsis">SPACE NAME</span>
+        </div>
+        <div class="type-ellipsis"><%= !@app_space_name ? "@app_space_name" : @app_space_name %></div>
+      </div>
+      <div class="col-xs-9 col-sm-6 col-md-6 col-lg-6 ptl txt-r type-ellipsis">
+        <a href='https://docs.cloudfoundry.org/concepts/roles.html' target='_blank' class='type-accent-4'>
+          <span class="small txt-m">Orgs &amp; Spaces</span><span class="fa fa-icon fa-external-link plm txt-m small"></span>
+        </a>
+      </div>
+    </div>
+  </li>
+  <!-- services -->
+  <li class="list-group-item pln">
+    <div class="row man">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 phxl">
+        <span class="h1 pan man fa fa-icon fa-database type-neutral-5" style="left: 0px; position: relative;"></span>
+      </div>
+      <!-- service bound to the app -->
+      <% if !@vcap_services.blank? || !@vcap_services == "{}" %>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">SERVICE</div>
+        </div>
+        <div class="type-ellipsis"><%= !@service_label ? "@service_label" : @service_label %></div>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">SERVICE NAME</div>
+        </div>
+        <div class="type-ellipsis"><%= !@service_name ? "@service_name" : @service_name %></div>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <div class="type-neutral-4 small">
+          <div class="type-ellipsis">SERVICE PLAN</div>
+        </div>
+        <div class="type-ellipsis"><%= !@service_plan ? "@service_plan" : @service_plan %></div>
+      </div>
+      <% end %>
+      <!-- no service bound to the app -->
+      <% if @vcap_services.blank? || @vcap_services == "{}" %>
+      <div class="col-xs-12 col-sm-15 col-md-15 col-lg-15">
+        <div class="ptl type-ellipsis">There aren't any services bound to this app.</div>
+      </div>
+      <div class="col-xs-9 col-sm-6 col-md-6 col-lg-6 ptl txt-r type-ellipsis">
+        <a href='http://docs.cloudfoundry.org/devguide/services/managing-services.html' target='_blank' class='type-accent-4'>
+          <span class="small">Manage Services</span><span class="fa fa-icon fa-external-link plm txt-m small"></span>
+        </a>
+      </div>
+      <% end %>
+      <!-- service bound to the app -->
+      <% if !@vcap_services.blank? || !@vcap_services == "{}" %>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ptl txt-r type-ellipsis">
+        <a href='http://docs.cloudfoundry.org/buildpacks/ruby/ruby-service-bindings.html' target='_blank' class='type-accent-4'>
+          <span class="small">Configuring Services</span><span class="fa fa-icon fa-external-link plm txt-m small"></span>
+        </a>
+      </div>
+      <% end %>
+    </div>
+  </li>
+</ul>

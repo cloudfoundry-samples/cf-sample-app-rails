@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%= favicon_link_tag       '/shortcut-icon.png', type: 'image/png' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    '/pui-3.0.0/pivotal-ui.min.css', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    '/font-mfizz-2.3.0/font-mfizz.css', media: 'all', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="bg-neutral-11">
+    <div class="container pan">
+      <section class="header">
+        <%= render partial: 'partials/header' %>
+      </section>
+      <section class="content">
+        <%= yield %>
+      </section>
+      <section>
+        <%= render partial: 'partials/footer' %>
+      </section>
+    </div>
+  </body>
+</html>
